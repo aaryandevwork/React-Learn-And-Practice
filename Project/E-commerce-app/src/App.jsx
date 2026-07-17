@@ -1,17 +1,17 @@
-import { use, useEffect, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import axios from "axios";
 import ProductCard from "./components/ProductCard";
 import CartCard from "./components/CartCard";
 import CartScreen from "./pages/CartScreen";
+import { MyStore } from "./context/MyContext";
 
 function App() {
 
   let [productData, setProductData] = useState([]);
-  let [isCartOpen, setIsCartOpen] = useState(false);
-  let [cartItems, setCartItems] = useState([]);
 
-  // console.log(cartItems);
+  // console.log("gsdf");
+  let {isCartOpen} = useContext(MyStore);
 
   const getProductData = async () => {
     try {
@@ -28,15 +28,15 @@ function App() {
 
   return (
     <div className="bg-gray-900 h-full flex flex-col p-4">
-      <Navbar setIsCartOpen={setIsCartOpen} />
+      <Navbar />
 
       {isCartOpen ? (
         // <CartCard  />
-        <CartScreen cartItems={cartItems}/>
+        <CartScreen/>
       ) : (
         <div className="grid grid-cols-4 m-3">
           {productData.map((elem) => {
-            return <ProductCard key={elem.id} product={elem} setCartItems={setCartItems} />;
+            return <ProductCard key={elem.id} product={elem} />;
           })}
         </div>
       )}

@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import CartCard from "../components/CartCard";
+import { MyStore } from "../context/MyContext";
 
-const CartScreen = ({cartItems}) => {
-
+const CartScreen = () => {
+   let {cartItems} = useContext(MyStore);
   return (
     <div className="h-[95%] gap-4 text-6xl grid grid-cols-3">
       {cartItems.map((elem) => {
