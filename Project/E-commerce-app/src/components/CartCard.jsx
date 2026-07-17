@@ -41,7 +41,7 @@ const CartCard = ({ product }) => {
               <Minus size={18} />
             </button>
 
-            <span className="w-12 text-center font-semibold">
+            <span className="w-12 text-center font-semibold text-black">
               {product.quantity}
             </span>
 
@@ -51,7 +51,7 @@ const CartCard = ({ product }) => {
           </div>
 
           {/* Remove */}
-          <button className="flex items-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-white transition hover:bg-red-600">
+          <button className="flex text-xl items-center gap-2 rounded-lg bg-red-500 px-2 py-1 m-auto text-white transition hover:bg-red-600">
             <Trash2 size={18} />
             Remove
           </button>
