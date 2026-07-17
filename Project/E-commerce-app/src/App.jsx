@@ -9,9 +9,9 @@ import { MyStore } from "./context/MyContext";
 function App() {
 
   let [productData, setProductData] = useState([]);
+  let {isCartOpen,cartItems} = useContext(MyStore);
 
-  // console.log("gsdf");
-  let {isCartOpen} = useContext(MyStore);
+  console.log(cartItems);
 
   const getProductData = async () => {
     try {
@@ -31,12 +31,14 @@ function App() {
       <Navbar />
 
       {isCartOpen ? (
-        // <CartCard  />
         <CartScreen/>
       ) : (
         <div className="grid grid-cols-4 m-3">
           {productData.map((elem) => {
-            return <ProductCard key={elem.id} product={elem} />;
+
+            let isInCart = cartItems.find((val) => val.id === elem.id);
+            
+            return <ProductCard key={elem.id} product={elem} isInCart={isInCart} />;
           })}
         </div>
       )}

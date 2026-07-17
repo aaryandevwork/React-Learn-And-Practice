@@ -2,13 +2,13 @@ import { Star, ShoppingCart } from "lucide-react";
 import { useContext } from "react";
 import { MyStore } from "../context/MyContext";
 
-function ProductCard({ product }) {
+function ProductCard({ product, isInCart }) {
+  let { setCartItems, incrementQuantity,dicrementQuantity } = useContext(MyStore);
 
-    let {setCartItems} = useContext(MyStore);
-
-    function addToCart(){
-        setCartItems((prev) => [...prev,product]);
-    }
+  function addToCart() {
+    setCartItems((prev) => [...prev, {...product, quantity: 1}]);
+    alert("Product added into cart");
+  }
 
   return (
     <div className="group overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl m-2">
@@ -56,14 +56,30 @@ function ProductCard({ product }) {
 
         {/* Buttons */}
         <div className="flex gap-3">
-          <button onClick={addToCart} className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 font-medium text-white transition hover:bg-blue-700">
+          {isInCart ? (
+            <button className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 font-medium text-white transition hover:bg-blue-700">
+              {/* <ShoppingCart size={18} /> */}
+              <span onClick={() => dicrementQuantity(product.id)} className="text-3xl">-</span>
+              <span className="text-3xl">{isInCart.quantity}</span>
+              <span onClick={() => incrementQuantity(product.id)} className="text-3xl">+</span>
+            </button>
+          ) : (
+            <button
+              onClick={addToCart}
+              className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 font-medium text-white transition hover:bg-blue-700"
+            >
+              <ShoppingCart size={18} />
+              Add to Cart
+            </button>
+          )}
+          {/* <button onClick={addToCart} className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 font-medium text-white transition hover:bg-blue-700">
             <ShoppingCart size={18} />
             Add to Cart
-          </button>
+          </button> */}
 
-          <button className="rounded-lg border border-blue-600 px-5 py-3 font-medium text-blue-600 transition hover:bg-blue-600 hover:text-white">
+          {/* <button className="rounded-lg border border-blue-600 px-5 py-3 font-medium text-blue-600 transition hover:bg-blue-600 hover:text-white">
             View
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
