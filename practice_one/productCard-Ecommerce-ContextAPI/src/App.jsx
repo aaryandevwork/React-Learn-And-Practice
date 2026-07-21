@@ -278,15 +278,19 @@ function App() {
     },
   ];
 
-  let { isCartOpen } = useContext(MyShop);
+  let { isCartOpen ,cartItems} = useContext(MyShop);
 
-  // console.log(products);
+  console.log("App");
 
   return (
     <div className="bg-gray-900 text-white h-full p-4 flex flex-col gap-4">
       <Navbar />
       {isCartOpen ? (
-        <Cart />
+        <div className="grid grid-cols-5 p-4 gap-5">
+          {cartItems.map((val, index) => {
+            return <Cart key={index} product={val}/>
+          })}
+        </div>
       ) : (
         <div className="grid grid-cols-5 p-4">
           {products.map((val, index) => {

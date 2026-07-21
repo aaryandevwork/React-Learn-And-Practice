@@ -4,7 +4,8 @@ import { Star } from "lucide-react";
 
 const ProductCard = ({ product }) => {
   let { setCartItems } = useContext(MyShop);
-console.log(product);
+console.log("product");
+
   return (
     <div className="group m-1 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:-translate-y-2">
       {/* Product Image */}

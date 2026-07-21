@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Minus, Plus, Trash2 } from "lucide-react";
 
 const CartCard = ({ product }) => {
+  console.log("cart");
+
+  // useEffect(() => {
+  //   console.log("start cart");
+
+  //   return () => {
+  //     console.log("end cart");
+  //   }
+  // },[])
   return (
     <div className="flex flex-col gap-5 rounded-xl border border-gray-200 bg-white p-5 shadow-sm md:flex-row">
       {/* Product Image */}

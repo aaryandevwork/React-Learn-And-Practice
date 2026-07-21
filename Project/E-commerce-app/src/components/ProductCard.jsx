@@ -72,6 +72,7 @@ function ProductCard({ product, isInCart }) {
               Add to Cart
             </button>
           )}
+          
           {/* <button onClick={addToCart} className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 font-medium text-white transition hover:bg-blue-700">
             <ShoppingCart size={18} />
             Add to Cart
