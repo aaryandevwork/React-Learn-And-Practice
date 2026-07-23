@@ -1,9 +1,13 @@
-import { useNavigate } from "react-router";
-import { useForm } from "react-hook-form";
-import { useContext } from "react";
-import { AuthStore } from "../context/AuthContext";
+// import { useNavigate } from "react-router";
+// import { useForm } from "react-hook-form";
+// import { useContext } from "react";
+// import { AuthStore } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 const RegisterPage = () => {
+  let { register, handleSubmit, RegisterFormSubmit, errors } = useAuth();
+
+  /*
     let {registeredUsers, setRegisteredUsers,setLoggedUser} = useContext(AuthStore);
 
   let navigate = useNavigate();
@@ -26,6 +30,8 @@ const RegisterPage = () => {
     reset();
     navigate("/main");
   }
+  */
+    
 
 
   return (
@@ -40,7 +46,7 @@ const RegisterPage = () => {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit(formSubmit)} className="space-y-5">
+        <form onSubmit={handleSubmit(RegisterFormSubmit)} className="space-y-5">
           {/* Name */}
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-700">

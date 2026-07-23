@@ -1,9 +1,14 @@
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
-import { AuthStore } from "../context/AuthContext";
+// import { useContext } from "react";
+// import { useForm } from "react-hook-form";
+// import { useNavigate } from "react-router";
+// import { AuthStore } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 const LoginPage = () => {
+
+  let {register ,handleSubmit ,errors ,loginFormSubmit ,navigate} = useAuth();
+
+  /*
   let navigate = useNavigate();
   let { loggedUser, setLoggedUser , registeredUsers} = useContext(AuthStore);
 
@@ -32,6 +37,7 @@ const LoginPage = () => {
     reset();
     navigate("/main");
   };
+  */
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
@@ -45,7 +51,7 @@ const LoginPage = () => {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit(formSubmit)} className="space-y-5">
+        <form onSubmit={handleSubmit(loginFormSubmit)} className="space-y-5">
           {/* Email */}
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-700">

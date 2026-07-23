@@ -1,27 +1,35 @@
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import Home from "../pages/Home";
-import About from "../pages/About";
-import Services from "../pages/Services";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import AuthLayout from "../layouts/AuthLayout";
 import MainLayout from "../layouts/MainLayout";
 import ProtectedRoutes from "./ProtectedRoutes";
+import PublicRoutes from "./PublicRoute";
+import UserPage from "../pages/UserPage";
+import ProductPage from "../pages/ProductPage";
+import ProductDetail from "../pages/ProductDetail";
 
 const AppRoutes = () => {
   let Rounter = createBrowserRouter([
     {
       path: "/",
-      element: <AuthLayout />,
+      element: <PublicRoutes />,
       children: [
         {
           path: "",
-          element: <LoginPage />,
-        },
-        {
-          path: "/register",
-          element: <RegisterPage />,
+          element: <AuthLayout />,
+          children: [
+            {
+              path: "",
+              element: <LoginPage />,
+            },
+            {
+              path: "/register",
+              element: <RegisterPage />,
+            },
+          ],
         },
       ],
     },
@@ -33,19 +41,23 @@ const AppRoutes = () => {
           path: "",
           element: <MainLayout />,
           children: [
-        {
-          path: "",
-          element: <Home />,
-        },
-        {
-          path: "about",
-          element: <About />,
-        },
-        {
-          path: "services",
-          element: <Services />,
-        },
-      ],
+            {
+              path: "",
+              element: <Home />,
+            },
+            {
+              path: "users",
+              element: <UserPage />,
+            },
+            {
+              path: "products",
+              element: <ProductPage />,
+            },
+            {
+              path : "productDetail/:id",
+              element:<ProductDetail />
+            }
+          ],
         },
       ],
     },
